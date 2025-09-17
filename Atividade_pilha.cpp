@@ -1,5 +1,5 @@
 // Pilha com Inserção, remoção,mostrar Topo, verificação cheio_vazio e implementação dinâmica
-// tem como salvar como .cpp pq tem bool
+// tem que salvar como .cpp pq tem bool
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
@@ -13,8 +13,8 @@ typedef struct {
 typedef struct aux {
         REGISTRO reg;
         struct aux* prox;
-} ELEMENTO; //cria a struct elemento que possui o reg do tipo registro e ela se auto referencia e faz um ponteiro para prox, 
-//que vai ter o endereço do próprio nó
+} ELEMENTO; /*cria a struct elemento que possui o reg do tipo registro e ela se auto referencia e faz um ponteiro para prox, 
+que vai ter o endereço do próprio nó*/
 
 typedef ELEMENTO* PONT; //da o apelido do ponteiro de ELEMENTO de PONT
 
@@ -96,8 +96,19 @@ int main () {
 	printf("Digite:\n1-Mostrar Topo\n2-	Remover no\n");
 	scanf("%d", &resposta);
 	
-/*	switch(resposta){
+	switch(resposta){
 		case 1:
+		exibir_topo(&p);
+		case 2:
+		REGISTRO removido;
+		if(pop(&p, &removido))
+			printf("Elemento removido: %d\n", removido.chave);
+		} else {
+   		 printf("A pilha está vazia, nada a remover!\n");
+		}
+		printf("\n--- Novo topo da pilha ---\n");
+		exibir_topo(&p);
+	break;
 		
-	}*/
+	}
 }
