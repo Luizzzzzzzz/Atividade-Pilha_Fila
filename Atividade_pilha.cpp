@@ -39,6 +39,9 @@ bool pilha_vazia (pilha* p) {
 } // checa se a pilha ta vazia vendo se o primeiro nó ta vazio
 
 void exibir_topo(pilha* p) {
+	if(pilha_vazia(p))
+		printf("Pilha Vazia");
+	else
      printf("Topo da Pilha: \n%i\n", p->topo->reg.chave); // imprimi o que está contido no ponteiro p que aponta para o topo da estrutura pilha
 }
 
@@ -57,7 +60,7 @@ bool push(pilha* p, REGISTRO reg) {// inserção na pilha
 
 bool pop(pilha* p, REGISTRO* reg) {//exclusão de elemento
     
-     if ( p->topo == NULL) //checa se a pilha ta vazia, acho que da pra usar a função pilha_vazia
+     if (pilha_vazia(p) //checa se a pilha ta vazia, acho que da pra usar a função pilha_vazia
      return false;
      
      *reg = p->topo->reg;
@@ -99,16 +102,18 @@ int main () {
 	switch(resposta){
 		case 1:
 		exibir_topo(&p);
+		break;
 		case 2:
 		REGISTRO removido;
-		if(pop(&p, &removido))
+			
+		if(pop(&p, &removido)){
 			printf("Elemento removido: %d\n", removido.chave);
-		} else {
-   		 printf("A pilha está vazia, nada a remover!\n");
-		}
+		}else {
+   			printf("A pilha está vazia, nada a remover!\n");}
+		
 		printf("\n--- Novo topo da pilha ---\n");
 		exibir_topo(&p);
-	break;
+		break;
 		
 	}
 }
