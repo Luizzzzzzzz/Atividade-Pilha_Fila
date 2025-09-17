@@ -1,4 +1,4 @@
-// Pilha com InserÁ„o, remoÁ„o,mostrar Topo, verificaÁ„o cheio_vazio e implementaÁ„o din‚mica
+// Pilha com Inser√ß√£o, remo√ß√£o,mostrar Topo, verifica√ß√£o cheio_vazio e implementa√ß√£o din√¢mica
 // tem como salvar como .cpp pq tem bool
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,51 +8,56 @@ typedef int CHAVE; //apelido para o int
 
 typedef struct {
         CHAVE chave;
-} REGISTRO; //Cria uma estrutura registro que possue a chave do tipo chave de antes, para guardar o endereÁo de cada nÛ eu acho
+} REGISTRO; //Cria uma estrutura registro que possue a chave do tipo chave de antes, para guardar o endere√ßo de cada n√≥ eu acho
 
 typedef struct aux {
         REGISTRO reg;
         struct aux* prox;
 } ELEMENTO; //cria a struct elemento que possui o reg do tipo registro e ela se auto referencia e faz um ponteiro para prox, 
-//que vai ter o endereÁo do prÛprio nÛ
+//que vai ter o endere√ßo do pr√≥prio n√≥
 
 typedef ELEMENTO* PONT; //da o apelido do ponteiro de ELEMENTO de PONT
 
 typedef struct{
         PONT topo;       
-}pilha; //ponteiro para a estrutura ELEMENTO que vai apontar pro topo da pilha, acho que È o tal nÛ cabeÁa
+}pilha; //ponteiro para a estrutura ELEMENTO que vai apontar pro topo da pilha, acho que √© o tal n√≥ cabe√ßa
 
-void inicializar_pilha (pilha* p) {
+bool inicializar_pilha (pilha* p) {
      p->topo = NULL;
-}// cria o ponteiro p para a estrutura pilha, p acessa o elemento topo da pilha e define o endereÁo como null
+     
+    if(p->topo == NULL)
+    return true;
+    else
+    return false;
+}// cria o ponteiro p para a estrutura pilha, p acessa o elemento topo da pilha e define o endere√ßo como null
 
 bool pilha_vazia (pilha* p) {
      if (p-> topo == NULL) 
      return true;
      else
      return false;
-] // checa se a pilha ta vazia vendo se o primeiro nÛ ta vazio
+} // checa se a pilha ta vazia vendo se o primeiro n√≥ ta vazio
 
 void exibir_topo(pilha* p) {
-     printf("Topo da Pilha: \n%i\n", p->topo); // imprimi o que est· contido no ponteiro p que aponta para o topo da estrutura pilha
+     printf("Topo da Pilha: \n%i\n", p->topo->reg.chave); // imprimi o que est√° contido no ponteiro p que aponta para o topo da estrutura pilha
 }
 
-bool push(pilha* p, REGISTRO reg) {// inserÁ„o na pilha
+bool push(pilha* p, REGISTRO reg) {// inser√ß√£o na pilha
     
-     PONT novo = (PONT) malloc(sizeof(ELEMENTO));// cria um novo nÛ do tipo elemento e aloca este ponteiro com memÛria do tamanho da estrutura elemento
-     if(novo==NULL)//testa se a alocaÁ„o deu certo
+     PONT novo = (PONT) malloc(sizeof(ELEMENTO));// cria um novo n√≥ do tipo elemento e aloca este ponteiro com mem√≥ria do tamanho da estrutura elemento
+     if(novo==NULL)//testa se a aloca√ß√£o deu certo
      return false;
      
-     novo->reg = reg;//novo acessa o registro e recebe o conte˙do do registro anterior
+     novo->reg = reg;//novo acessa o registro e recebe o conte√∫do do registro anterior
      novo->prox = p->topo;//novo com o conteudo do registro antigo aponta para o topo da pilha
      p->topo=novo;//ponteiro p que acessa o topo da estrutura pilha e recebe o novo elemento
      
      return true;
 } 
 
-bool pop(pilha* p, REGISTRO* reg) {//exclus„o de elemento
+bool pop(pilha* p, REGISTRO* reg) {//exclus√£o de elemento
     
-     if ( p->topo == NULL) //checa se a pilha ta vazia, acho que da pra usar a funÁ„o pilha_vazia
+     if ( p->topo == NULL) //checa se a pilha ta vazia, acho que da pra usar a fun√ß√£o pilha_vazia
      return false;
      
      *reg = p->topo->reg;
@@ -60,4 +65,39 @@ bool pop(pilha* p, REGISTRO* reg) {//exclus„o de elemento
      p->topo = p->topo->prox;
      free(apagar);
      return true;
+}
+
+int main () {
+	pilha p;//vari√°vel do tipo pilha para iniciar os endere√ßos
+	int num_element, aux=0, resposta;
+	
+	int init=inicializar_pilha(&p);
+	
+	if (init == true)
+	printf("Inicializacao da pilha completa!\n");
+	else
+	printf("Inicializacao da pilha mal sucedida :(\n)");
+	
+	printf("\nDeseja inserir quantos elementos?\n");
+	scanf("%i", &num_element);
+	
+	while(aux<num_element){
+		REGISTRO reg;
+		
+		printf("Digite o valor do %i elemento:\n", aux+1);
+		scanf("%d", &reg.chave);
+		
+		push(&p, reg);
+		aux++;
+	}
+	system("cls");
+	printf("Insercao bem sucedida!\n");
+	
+	printf("Digite:\n1-Mostrar Topo\n2-	Remover no\n");
+	scanf("%d", &resposta);
+	
+/*	switch(resposta){
+		case 1:
+		
+	}*/
 }
