@@ -60,7 +60,7 @@ bool push(pilha* p, REGISTRO reg) {// inserção na pilha
 
 bool pop(pilha* p, REGISTRO* reg) {//exclusão de elemento
     
-     if (pilha_vazia(p) //checa se a pilha ta vazia, acho que da pra usar a função pilha_vazia
+     if (pilha_vazia(p)) //checa se a pilha ta vazia, acho que da pra usar a função pilha_vazia
      return false;
      
      *reg = p->topo->reg;
@@ -96,7 +96,7 @@ int main () {
 	system("cls");
 	printf("Insercao bem sucedida!\n");
 	
-	printf("Digite:\n1-Mostrar Topo\n2-	Remover no\n");
+	printf("Digite:\n1-Mostrar Topo\n2-Remover no\n");
 	scanf("%d", &resposta);
 	
 	switch(resposta){
